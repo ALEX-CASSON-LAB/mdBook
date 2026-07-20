@@ -186,7 +186,18 @@ impl Theme {
         for (file_name, contents) in fonts::LICENSES {
             fs::write(themedir.join(file_name), contents)?;
         }
+        fs::write(themedir.join(fonts::ROBOTO_LICENSE.0), fonts::ROBOTO_LICENSE.1)?;
+        fs::write(
+            themedir.join(fonts::OPENDYSLEXIC_LICENSE.0),
+            fonts::OPENDYSLEXIC_LICENSE.1,
+        )?;
         for (file_name, contents) in fonts::OPEN_SANS.iter() {
+            fs::write(themedir.join(file_name), contents)?;
+        }
+        for (file_name, contents) in fonts::ROBOTO.iter() {
+            fs::write(themedir.join(file_name), contents)?;
+        }
+        for (file_name, contents) in fonts::OPENDYSLEXIC.iter() {
             fs::write(themedir.join(file_name), contents)?;
         }
         fs::write(

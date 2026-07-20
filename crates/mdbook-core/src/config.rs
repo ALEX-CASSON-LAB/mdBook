@@ -454,6 +454,8 @@ pub struct HtmlConfig {
     /// The theme to use if the browser requests the dark version of the site.
     /// Defaults to 'navy'.
     pub preferred_dark_theme: Option<String>,
+    /// The default font to use, defaults to 'font-opensans'
+    pub default_font: Option<String>,
     /// Supports smart quotes, apostrophes, ellipsis, en-dash, and em-dash.
     pub smart_punctuation: bool,
     /// Support for definition lists.
@@ -526,6 +528,7 @@ impl Default for HtmlConfig {
             theme: None,
             default_theme: None,
             preferred_dark_theme: None,
+            default_font: None,
             smart_punctuation: true,
             definition_lists: true,
             admonitions: true,

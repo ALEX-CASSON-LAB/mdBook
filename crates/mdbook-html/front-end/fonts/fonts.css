@@ -1,5 +1,8 @@
 /* Open Sans is licensed under the Apache License, Version 2.0. See http://www.apache.org/licenses/LICENSE-2.0 */
-/* Source Code Pro is under the Open Font License. See https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL */
+/* Source Code Pro is licensed under the Open Font License. See https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL */
+/* Roboto is licensed under the SIL Open Font License, Version 1.1. See https://openfontlicense.org/open-font-license-official-text/ */
+/* OpenDyslexic is licensed under the SIL Open Font License, Version 1.1. See https://openfontlicense.org/open-font-license-official-text/ */
+
 
 /* open-sans-300 - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
@@ -98,3 +101,68 @@
   font-weight: 500;
   src: url('{{ resource "fonts/source-code-pro-v11-all-charsets-500.woff2" }}') format('woff2');
 }
+
+/* roboto-normal */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+  src: local('Roboto Variable'), local('Roboto-VariableFont_wdth,wght'),
+       url('{{ resource "fonts/Roboto-VariableFont_wdth,wght.ttf" }}') format('truetype');
+}
+
+/* roboto-italic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+  src: local('Roboto Italic Variable'), local('Roboto-Italic-VariableFont_wdth,wght'),
+       url('{{ resource "fonts/Roboto-Italic-VariableFont_wdth,wght.ttf" }}') format('truetype');
+}
+
+/* opendyslexic-regular */
+@font-face { 
+    font-family: "OpenDyslexic";
+    font-style: normal;
+    font-weight: normal;
+    src: local('OpenDyslexic Regular'), local('OpenDyslexic-Regular'),
+         url('{{ resource "fonts/OpenDyslexic-Regular.woff2" }}') format('woff2');
+}
+
+/* opendyslexic-italic */
+@font-face { 
+    font-family: "OpenDyslexic";
+    font-style: italic;
+    font-weight: normal;
+    src: local('OpenDyslexic Italic'), local('OpenDyslexic-Italic'),
+         url('{{ resource "fonts/OpenDyslexic-Italic.woff2" }}') format('woff2');
+}
+
+/* opendyslexic-bold */
+@font-face { 
+    font-family: "OpenDyslexic";
+    font-style: bold;
+    font-weight: normal;
+    src: local('OpenDyslexic Bold'), local('OpenDyslexic-Bold'),
+         url('{{ resource "fonts/OpenDyslexic-Bold.woff2" }}') format('woff2');
+}
+
+/* opendyslexic-bold-italic */
+@font-face { 
+    font-family: "OpenDyslexic";
+    font-style: bold;
+    font-weight: italic;
+    src: local('OpenDyslexic Bold Italic'), local('OpenDyslexic-Bold-Italic'),
+         url('{{ resource "fonts/OpenDyslexic-Bold-Italic.woff2" }}') format('woff2');
+}
+
+/* opendyslexic-mono */
+@font-face { 
+    font-family: "OpenDyslexicMono";
+    font-style: normal;
+    font-weight: normal;
+    src: local('OpenDyslexic Mono'), local('OpenDyslexicMono-Regular'),
+         url('{{ resource "fonts/OpenDyslexicMono-Regular.otf" }}') format('opentype');
+  }

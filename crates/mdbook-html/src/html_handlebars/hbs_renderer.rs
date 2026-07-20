@@ -506,6 +506,12 @@ fn make_data(
         json!(preferred_dark_theme),
     );
 
+    let default_font = match html_config.default_font{
+        Some(ref font) => font.to_lowercase(),
+        None => "font-opensans".to_string(),
+    };
+    data.insert("default_font".to_owned(), json!(default_font));
+
     if html_config.mathjax_support {
         data.insert("mathjax_support".to_owned(), json!(true));
     }

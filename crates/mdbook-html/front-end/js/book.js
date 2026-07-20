@@ -533,6 +533,191 @@ aria-label="Show hidden lines"></button>';
     });
 })();
 
+(function fonts() {
+    const html = document.querySelector('html');
+    const fontToggleButton = document.getElementById('mdbook-font-toggle');
+    const fontPopup = document.getElementById('mdbook-font-list');
+    const fontIds = [];
+    fontPopup.querySelectorAll('button.font').forEach(function(el) {
+        fontIds.push(el.id);
+    });
+
+    function to_font_class_name(font) {
+        if (font === null || font === undefined) {
+            return null;
+        }
+        return font.startsWith('font-') ? font : ('font-' + font);
+    }
+
+    function to_font_button_id(font) {
+        return 'mdbook-font-' + font.replace(/^font-/, '');
+    }
+
+    function showfonts() {
+        fontPopup.style.display = 'block';
+        fontToggleButton.setAttribute('aria-expanded', true);
+        const active = fontPopup.querySelector('button#' + to_font_button_id(get_font()));
+        if (active !== null) {
+            active.focus();
+        }
+    }
+
+    function updatefontSelected() {
+        fontPopup.querySelectorAll('.font-selected').forEach(function(el) {
+            el.classList.remove('font-selected');
+        });
+        const selected = to_font_class_name(get_saved_font()) ?? get_font();
+        let element = fontPopup.querySelector('button#' + to_font_button_id(selected));
+        if (element === null) {
+            element = fontPopup.querySelector('button#' + to_font_button_id(get_font()));
+        }
+        if (element !== null) {
+            element.classList.add('font-selected');
+        }
+    }
+
+    function hidefonts() {
+        fontPopup.style.display = 'none';
+        fontToggleButton.setAttribute('aria-expanded', false);
+        fontToggleButton.focus();
+    }
+
+    function get_saved_font() {
+        let font = null;
+        try {
+            font = localStorage.getItem('mdbook-font');
+        } catch {
+            // ignore error.
+        }
+        return font;
+    }
+
+    function delete_saved_font() {
+        localStorage.removeItem('mdbook-font');
+    }
+
+    function get_font() {
+        const fallback = (typeof default_font === 'undefined')
+            ? 'font-roboto'
+            : to_font_class_name(default_font);
+        const font = to_font_class_name(get_saved_font());
+        if (font === null || !fontIds.includes(to_font_button_id(font))) {
+            return fallback;
+        }
+        return font;
+    }
+
+    function set_font(font, store = true) {
+
+        font = to_font_class_name(font);
+
+        let previousfont = get_font();
+
+        if (store) {
+            try {
+                localStorage.setItem('mdbook-font', font);
+            } catch {
+                // ignore error.
+            }
+        }
+
+        html.classList.remove(previousfont);
+        html.classList.add(font);
+        previousfont = font;
+        updatefontSelected();
+    }
+
+    // Set font.
+    set_font(get_font(), false);
+
+    fontToggleButton.addEventListener('click', function() {
+        if (fontPopup.style.display === 'block') {
+            hidefonts();
+        } else {
+            showfonts();
+        }
+    });
+
+    fontPopup.addEventListener('click', function(e) {
+        let font;
+        if (e.target.className === 'font') {
+            font = e.target.id;
+        } else if (e.target.parentElement.className === 'font') {
+            font = e.target.parentElement.id;
+        } else {
+            return;
+        }
+        font = font.replace(/^mdbook-font-/, '');
+
+        if (font === 'default_font' || font === null) {
+            delete_saved_font();
+            set_font(get_font(), false);
+        } else {
+            set_font('font-' + font);
+        }
+    });
+
+    fontPopup.addEventListener('focusout', function(e) {
+        // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
+        if (!!e.relatedTarget &&
+            !fontToggleButton.contains(e.relatedTarget) &&
+            !fontPopup.contains(e.relatedTarget)
+        ) {
+            hidefonts();
+        }
+    });
+
+    // Should not be needed, but it works around an issue on macOS & iOS:
+    // https://github.com/rust-lang/mdBook/issues/628
+    document.addEventListener('click', function(e) {
+        if (fontPopup.style.display === 'block' &&
+            !fontToggleButton.contains(e.target) &&
+            !fontPopup.contains(e.target)
+        ) {
+            hidefonts();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+            return;
+        }
+        if (!fontPopup.contains(e.target)) {
+            return;
+        }
+
+        let li;
+        switch (e.key) {
+        case 'Escape':
+            e.preventDefault();
+            hidefonts();
+            break;
+        case 'ArrowUp':
+            e.preventDefault();
+            li = document.activeElement.parentElement;
+            if (li && li.previousElementSibling) {
+                li.previousElementSibling.querySelector('button').focus();
+            }
+            break;
+        case 'ArrowDown':
+            e.preventDefault();
+            li = document.activeElement.parentElement;
+            if (li && li.nextElementSibling) {
+                li.nextElementSibling.querySelector('button').focus();
+            }
+            break;
+        case 'Home':
+            e.preventDefault();
+            fontPopup.querySelector('li:first-child button').focus();
+            break;
+        case 'End':
+            e.preventDefault();
+            fontPopup.querySelector('li:last-child button').focus();
+            break;
+        }
+    });
+})();
+
 (function sidebar() {
     const sidebar = document.getElementById('mdbook-sidebar');
     const sidebarLinks = document.querySelectorAll('#mdbook-sidebar a');

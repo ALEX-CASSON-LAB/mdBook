@@ -82,6 +82,7 @@
             try {
                 let theme = localStorage.getItem('mdbook-theme');
                 let sidebar = localStorage.getItem('mdbook-sidebar');
+                let font = localStorage.getItem('mdbook-font');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -89,6 +90,10 @@
 
                 if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
                     localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+
+                if (font.startsWith('"') && font.endsWith('"')) {
+                    localStorage.setItem('mdbook-font', font.slice(1, font.length - 1));
                 }
             } catch (e) { }
         </script>
@@ -102,6 +107,14 @@
             const html = document.documentElement;
             html.classList.remove('{{ default_theme }}')
             html.classList.add(theme);
+
+            const default_font = "{{ default_font }}";
+            let font;
+            try { font = localStorage.getItem('mdbook-font'); } catch(e) { }
+            if (font === null || font === undefined) { font = default_font; }
+            html.classList.remove(default_font)
+            html.classList.add(font);
+
             html.classList.add("js");
         </script>
 
@@ -156,6 +169,15 @@
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-font-toggle" class="icon-button" type="button" title="Change font" aria-label="Change font" aria-haspopup="true" aria-expanded="false" aria-controls="font-list">
+                            {{fa "solid" "font"}}
+                        </button>
+                        <ul id="mdbook-font-list" class="font-popup" aria-label="Fonts" role="menu">
+                            <li role="none"><button role="menuitem" class="font" id="mdbook-font-opendyslexic">OpenDyslexic</button></li>
+                            <li role="none"><button role="menuitem" class="font" id="mdbook-font-opensans">Open Sans</button></li>
+                            <li role="none"><button role="menuitem" class="font" id="mdbook-font-roboto">Roboto</button></li>
+                            <li role="none"><button role="menuitem" class="font" id="mdbook-font-times">Times</button></li>
                         </ul>
                         {{#if search_enabled}}
                         <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">

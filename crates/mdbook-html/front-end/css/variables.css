@@ -14,6 +14,10 @@
     --searchbar-margin-block-start: 5px;
 }
 
+.font-opendyslexic {
+    --mono-font: "OpenDyslexicMono", "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
+}
+
 /* Themes */
 
 .ayu {

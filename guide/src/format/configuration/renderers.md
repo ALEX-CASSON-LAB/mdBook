@@ -97,6 +97,7 @@ description = "The example book covers examples."
 theme = "my-theme"
 default-theme = "light"
 preferred-dark-theme = "navy"
+default-font = "font-opensans"
 smart-punctuation = true
 definition-lists = true
 admonitions = true
@@ -124,6 +125,8 @@ The following configuration options are available:
   the browser requests the dark version of the site via the
   [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
   CSS media query. Defaults to `navy`.
+  **default-font:** The font to select by default in the 
+  'Change Font' dropdown. Defaults to `font-opensans`. `font-opendyslexic`, `font-opensans`, `font-roboto` and `font-times` are built in options.
 - **smart-punctuation:** Converts quotes to curly quotes, `...` to `…`, `--` to en-dash, and `---` to em-dash.
   See [Smart Punctuation](../markdown.md#smart-punctuation).
   Defaults to `true`.

@@ -726,6 +726,53 @@ html:not(.js) .sidebar-resize-handle {
     width: 14px;
 }
 
+/* Font Menu Popup */
+
+.font-popup {
+    position: absolute;
+    left: 20px;
+    top: var(--menu-bar-height);
+    z-index: 1000;
+    border-radius: 4px;
+    font-size: 0.7em;
+    color: var(--fg);
+    background: var(--theme-popup-bg);
+    border: 1px solid var(--theme-popup-border);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    /* Don't let the children's background extend past the rounded corners. */
+    overflow: hidden;
+}
+[dir=rtl] .font-popup { left: unset;  right: 10px; }
+.font-popup .default {
+    color: var(--icons);
+}
+.font-popup .font {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 2px 20px;
+    line-height: 25px;
+    white-space: nowrap;
+    text-align: start;
+    cursor: pointer;
+    color: inherit;
+    background: inherit;
+    font-size: inherit;
+}
+.font-popup .font:hover {
+    background-color: var(--theme-hover);
+}
+
+.font-selected::before {
+    display: inline-block;
+    content: "✓";
+    margin-inline-start: -14px;
+    width: 14px;
+}
+
 /* The container for the help popup that covers the whole window. */
 #mdbook-help-container {
     /* Position and size for the whole window. */

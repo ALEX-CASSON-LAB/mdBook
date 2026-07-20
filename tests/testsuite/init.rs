@@ -230,8 +230,17 @@ theme/favicon.png
 theme/favicon.svg
 theme/fonts
 theme/fonts/OPEN-SANS-LICENSE.txt
+theme/fonts/OPENDYSLEXIC-LICENSE.txt
+theme/fonts/ROBOTO-LICENSE.txt
 theme/fonts/SOURCE-CODE-PRO-LICENSE.txt
 theme/fonts/fonts.css
+theme/fonts/OpenDyslexic-Bold-Italic.woff2
+theme/fonts/OpenDyslexic-Bold.woff2
+theme/fonts/OpenDyslexic-Italic.woff2
+theme/fonts/OpenDyslexic-Regular.woff2
+theme/fonts/OpenDyslexicMono-Regular.otf
+theme/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf
+theme/fonts/Roboto-VariableFont_wdth,wght.ttf
 theme/fonts/open-sans-v17-all-charsets-300.woff2
 theme/fonts/open-sans-v17-all-charsets-300italic.woff2
 theme/fonts/open-sans-v17-all-charsets-600.woff2

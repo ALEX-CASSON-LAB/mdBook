@@ -66,7 +66,18 @@ impl StaticFiles {
             for (file_name, contents) in theme::fonts::LICENSES.iter() {
                 this.add_builtin(file_name, contents);
             }
+            this.add_builtin(theme::fonts::ROBOTO_LICENSE.0, theme::fonts::ROBOTO_LICENSE.1);
+            this.add_builtin(
+                theme::fonts::OPENDYSLEXIC_LICENSE.0,
+                theme::fonts::OPENDYSLEXIC_LICENSE.1,
+            );
             for (file_name, contents) in theme::fonts::OPEN_SANS.iter() {
+                this.add_builtin(file_name, contents);
+            }
+            for (file_name, contents) in theme::fonts::ROBOTO.iter() {
+                this.add_builtin(file_name, contents);
+            }
+            for (file_name, contents) in theme::fonts::OPENDYSLEXIC.iter() {
                 this.add_builtin(file_name, contents);
             }
             this.add_builtin(
